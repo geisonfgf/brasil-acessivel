@@ -9,7 +9,7 @@ Flask-WTF==0.9.4
 Flask-WhooshAlchemy==0.54a
 Jinja2==2.7.2
 MarkupSafe==0.18
-SQLAlchemy==0.9.1
+SQLAlchemy==0.7.10
 Tempita==0.5.2
 WTForms==1.0.5
 Werkzeug==0.9.4
