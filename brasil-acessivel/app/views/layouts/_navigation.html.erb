@@ -1,0 +1,16 @@
+<div class="container">
+  <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
+  <%= link_to 'Brasil Acessivel', root_path, class: 'brand', id: 'logo' %>
+  <ul class="nav navbar-nav pull-left">
+    <%= render 'layouts/navigation_links' %>
+  </ul>
+  <%= form_for User.new, url: user_path([@user, @item]), html: {class: "navbar-form pull-right"} do |f| %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Senha' %>
+    <%= f.submit "Logar", class: "btn btn-success" %>
+  <% end %>
+</div>
