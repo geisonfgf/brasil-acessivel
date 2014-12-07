@@ -1,8 +1,46 @@
-<% content_for :title do %>Brasil Acessivel<% end %>
+<% content_for :title do %>Brasil Acessível<% end %>
 <div class="container">
-    <div class="hero-unit">
-        <h1>Brasil Acessivel</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a href="#" class="btn btn-primary btn-large">Saiba mais &raquo;</a></p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="hero-unit">
+            <h1>Brasil Acessível <span><%=image_tag "logo.png" %></span></h1>
+            <p>
+              Portal de acessibilidade no Brasil. No portal Brasil Acessível você pode procurar por lugares que&nbsp;
+              fornecem lazer e possuem acessibilidade para cadeirantes, tais como, cinemas, bares, restaurantes,&nbsp;
+              hotéis, etc.
+            </p>
+            <p>
+              Também é possível encontrar informação sobre serviços adaptados como transporte, passeios, entre outros.
+            </p>
+            <p><a href="#" class="btn btn-primary btn-large">Saiba mais &raquo;</a></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h1>Mapa</h1>
+      </div>
+      <div class="col-md-4">
+        <h1>Busca</h1>
+        <form role="form" class="form">
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado" name="estado" class="form-control">
+              <option>RS</option>
+              <option>RJ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <select id="cidade" name="cidade" class="form-control">
+              <option>Porto Alegre</option>
+              <option>Viamão</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="produto-servico">Produto ou Serviço</label>
+            <input type="text" id="produto-servico" name="produto-servico" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-success">Procurar &raquo;</button>
+        </form>
+      </div>
     </div>
 </div>
