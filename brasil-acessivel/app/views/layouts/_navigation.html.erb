@@ -4,23 +4,28 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </a>
-  <%= link_to 'Brasil Acessivel', root_path, class: 'brand', id: 'logo' %>
+  <%= link_to "<span>#{image_tag 'brasil_accessivel_logo.png'}</span>&nbsp;Brasil Acessivel".html_safe, root_path, class: 'brand', id: 'logo' %>
   <ul class="nav navbar-nav pull-left">
     <%= render 'layouts/navigation_links' %>
   </ul>
   <ul class="nav navbar-nav navbar-right">
     <li>
       <div class="dropdown">
-        <button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown">Login</button>
-        <div class="dropdown-menu" style="padding: 10px; background: #ddd">
+        <button type="button" class="btn btn-default navbar-btn register-button" data-toggle="dropdown">Registrar</button>
+      </div>
+    </li>
+    <li>
+      <div class="dropdown">
+        <button type="button" class="btn btn-success navbar-btn" data-toggle="dropdown">Logar</button>
+        <div class="dropdown-menu login-form">
           <form action="" role="form">
             <div class="form-group">
-              <label for="user">User</label>
-              <input type="text" class="form-control" id="user" placeholder="User" />
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password" />
+              <label for="user">Usuário</label>
+              <input type="text" class="form-control" id="user" placeholder="Usuário" />
+              <label for="password">Senha</label>
+              <input type="password" class="form-control" id="password" placeholder="Senha" />
             </div>
-            <button type="submit" class="btn btn-default">Sign in</button>
+            <button type="submit" class="btn btn-success">Logar</button>
           </form>
         </div>
       </div>
