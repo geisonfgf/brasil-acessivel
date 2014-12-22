@@ -1,23 +1,24 @@
-<h1>Mapa</h1>
-<div style='width: 100%;'>
-  <div id="one_marker" style='width: 450px; height: 280px;'></div>
+<div class="col-md-12">
+  <div style='width: 760px;'>
+    <div id="one_marker" style='width: 760px; height: 300px;'></div>
+  </div>
+  <script>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ internal: {id: 'one_marker'}}, function(){
+      markers = handler.addMarkers([
+        {
+          lat: -30.056027,
+          lng: -51.162192,
+          picture: {
+            url: "<%= image_path("map_marker.png") %>",
+            width:  50,
+            height: 50
+          },
+          infowindow: "PUCRS"
+        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  </script>
 </div>
-<script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ internal: {id: 'one_marker'}}, function(){
-    markers = handler.addMarkers([
-      {
-        lat: -30.056027,
-        lng: -51.162192,
-        picture: {
-          url: "<%= image_path("map_marker.png") %>",
-          width:  50,
-          height: 50
-        },
-        infowindow: "PUCRS"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
-</script>
