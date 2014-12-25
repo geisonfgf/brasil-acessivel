@@ -1,41 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @place.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @place.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @place.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @place.description %>
+  </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @place.rating %>
-</p>
+  <p>
+    <strong>Rating:</strong>
+    <%= @place.rating %>
+  </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @place.latitude %>
-</p>
+  <p>
+    <strong>Latitude:</strong>
+    <%= @place.latitude %>
+  </p>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @place.longitude %>
-</p>
+  <p>
+    <strong>Longitude:</strong>
+    <%= @place.longitude %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @place.address %>
-</p>
+  <p>
+    <strong>Address:</strong>
+    <%= @place.address %>
+  </p>
 
-<h3>Lugares Próximos</h3>
-<ul>
-<% for place in @place.nearbys(10) %>
-  <li><%= link_to place.address, place %> (<%= (place.distance / 0.62137).round(2) %>) Km</li>
-<% end %>
-</ul>
+  <h3>Lugares Próximos</h3>
+  <ul>
+  <% for place in @place.nearbys(10) %>
+    <li><%= link_to place.address, place %> (<%= (place.distance / 0.62137).round(2) %>) Km</li>
+  <% end %>
+  </ul>
 
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+  <%= link_to 'Edit', edit_place_path(@place) %> |
+  <%= link_to 'Back', places_path %>
+</div>
