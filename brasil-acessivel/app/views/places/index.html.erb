@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Listing places</h1>
+  <h1>Lista de Locais e Serviços</h1>
 
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -23,15 +23,13 @@
           <td><%= place.latitude %></td>
           <td><%= place.longitude %></td>
           <td><%= place.address %></td>
-          <td><%= link_to 'Show', place %></td>
-          <td><%= link_to 'Edit', edit_place_path(place) %></td>
-          <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Visualizar', place, class: 'btn btn-mini btn-success' %></td>
+          <td><%= link_to 'Editar', edit_place_path(place), class: 'btn btn-mini btn-warning' %></td>
+          <td><%= link_to 'Excluir', place, method: :delete, data: { confirm: 'Quer mesmo excluir este item?' }, class: 'btn btn-mini btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <br>
-
-  <%= link_to 'New Place', new_place_path %>
+  <%= link_to 'Cadastrar Local ou Serviço', new_place_path, class: 'btn btn-primary' %>
 </div>

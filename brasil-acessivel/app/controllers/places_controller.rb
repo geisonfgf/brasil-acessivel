@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :set_place, only: [:edit, :update, :destroy]
+  before_action :set_markers, only: [:show]
 
   # GET /places
   # GET /places.json
@@ -65,6 +66,28 @@ class PlacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_place
       @place = Place.find(params[:id])
+    end
+
+    def set_places_near_by
+      set_place
+      @places_near = @place.nearbys(2)
+    end
+
+    def set_markers
+      set_places_near_by
+      places = @places_near
+      places << @place
+      image_marker = {
+        :url => view_context.image_path("map_marker.png"),
+        :width =>  50,
+        :height => 50
+      }
+      @markers = Gmaps4rails.build_markers(places) do |place, marker|
+        marker.picture image_marker
+        marker.infowindow "<h5>#{place.name}</h5><p>#{place.description}</p>"
+        marker.lat place.latitude
+        marker.lng place.longitude
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

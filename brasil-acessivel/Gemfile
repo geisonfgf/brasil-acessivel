@@ -10,6 +10,9 @@ gem 'sqlite3'
 gem 'bootstrap-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+# Bootstrap form generator
+gem 'bootstrap_form'
+
 #
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets

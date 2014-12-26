@@ -1,18 +1,18 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
+  <h1>Descrição do Local ou Serviço</h1>
 
   <p>
-    <strong>Name:</strong>
+    <strong>Nome:</strong>
     <%= @place.name %>
   </p>
 
   <p>
-    <strong>Description:</strong>
+    <strong>Descrição:</strong>
     <%= @place.description %>
   </p>
 
   <p>
-    <strong>Rating:</strong>
+    <strong>Acessibilidade:</strong>
     <%= @place.rating %>
   </p>
 
@@ -27,17 +27,30 @@
   </p>
 
   <p>
-    <strong>Address:</strong>
+    <strong>Endereço:</strong>
     <%= @place.address %>
   </p>
 
   <h3>Lugares Próximos</h3>
   <ul>
-  <% for place in @place.nearbys(10) %>
+  <% for place in @place.nearbys(2) %>
     <li><%= link_to place.address, place %> (<%= (place.distance / 0.62137).round(2) %>) Km</li>
   <% end %>
   </ul>
 
-  <%= link_to 'Edit', edit_place_path(@place) %> |
-  <%= link_to 'Back', places_path %>
+  <div style='width: 760px; margin-top: 10px; margin-bottom: 10px;'>
+    <div id="map" style='width: 760px; height: 400px;'></div>
+  </div>
+
+  <script>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @markers.to_json %>);
+      handler.map.centerOn([<%= @place.latitude %>, <%= @place.longitude %>]);
+      handler.getMap().setZoom(14);
+    });
+  </script>
+
+  <%= link_to 'Editar', edit_place_path(@place), class: 'btn btn-primary' %>
+  <%= link_to 'Voltar', places_path, class: 'btn btn-default' %>
 </div>
