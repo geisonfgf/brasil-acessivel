@@ -1,5 +1,5 @@
 <div class="container">
-<%= bootstrap_form_for(@place, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+<%= bootstrap_form_for(@place, layout: :horizontal) do |f| %>
   <%= f.alert_message "Por favor verifique os erros listados abaixo!" %>
 
   <%= f.text_field :name, label: 'Nome: ' %>

@@ -1,6 +1,4 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
-en:
+pt-BR:
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -57,5 +55,4 @@ en:
       not_locked: "was not locked"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+        other: "%{count} errors impossibilitam esse %{resource} de ser salvo:"
