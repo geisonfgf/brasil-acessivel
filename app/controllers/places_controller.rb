@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_place, only: [:edit, :update, :destroy]
   before_action :set_markers, only: [:show]
 
