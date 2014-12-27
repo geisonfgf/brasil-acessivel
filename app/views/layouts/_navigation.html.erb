@@ -16,12 +16,17 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ônibus</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Táxi</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Translados</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Empregos</a></li>
       </ul>
     </li>
-    <li><%= link_to 'Empregos', about_path('about') %></li>
     <li><%= link_to 'Contato', about_path('about') %></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
+    <li>
+      <div>
+        <%= link_to '<i class="glyphicon glyphicon-map-marker"></i> Novo Local'.html_safe, new_place_path, class: 'btn btn-primary navbar-btn' %>
+      </div>
+    </li>
     <li>
       <form class="navbar-form" role="search" action="<%= root_path %>" method="GET">
         <div class="input-group">

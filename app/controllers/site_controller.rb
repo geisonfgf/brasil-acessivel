@@ -17,7 +17,11 @@ class SiteController < ApplicationController
     def set_places_near_by
       @places = Place.all
       params[:address].nil? ? address = 'Brasil' : address = params[:address]
-      @places_near = @places.near(address, 20, :unit => :km)
+      if address == 'Brasil'
+        @places_near = @places.near(address, 7500, :unit => :km)
+      else
+        @places_near = @places.near(address, 20, :unit => :km)
+      end
     end
 
     def set_markers
