@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Contato</h1>
+
+  <%= bootstrap_form_for(@contact, layout: :horizontal) do |f| %>
+    <%= f.alert_message "Por favor verifique os erros listados abaixo!" %>
+
+    <%= f.text_field :name, label: 'Nome: ' %>
+    <%= f.text_field :email, label: 'Email: ' %>
+    <%= f.text_field :subject, label: 'Assunto: ' %>
+    <%= f.text_area :content, label: 'Mensagem: ' %>
+    <%= f.form_group do %>
+      <%= f.primary "Enviar" %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Voltar', root_path, class: 'btn btn-default' %>
+</div>

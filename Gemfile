@@ -14,6 +14,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap_form'
 # User authentication
 gem 'devise'
+# Models that is not required to save
+gem "active_attr"
 
 # Auto prefix rails
 gem 'autoprefixer-rails'
