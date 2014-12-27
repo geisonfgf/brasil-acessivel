@@ -10,7 +10,7 @@
     <li><%= link_to 'Ajude o Projeto', about_path('about') %></li>
     <li class="dropdown">
       <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">
-        Serviços Adaptados <b class="caret"></b>
+        Serviços <b class="caret"></b>
       </a>
       <ul id="menu2" class="dropdown-menu dropdown-toggle" role="menu" aria-labelledby="drop5">
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ônibus</a></li>
@@ -32,9 +32,13 @@
         </div>
       </form>
     </li>
-    <li class="divider-vertical"></li>
     <% if user_signed_in? %>
-      Olá <%= current_user.email %>! <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: 'btn btn-default' %>
+    <li><div class="navbar-text text-blank">Olá <%= current_user.email %></div></li>
+    <li>
+      <div>
+        <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
+      </div>
+    </li>
     <% else %>
     <li><div><%= link_to "Registrar", new_user_registration_path, class: 'btn btn-default navbar-btn register-button' %></div></li>
     <li><div><%= link_to "Logar", new_user_session_path, class: 'btn btn-success navbar-btn' %></div></li>
