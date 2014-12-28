@@ -1,0 +1,14 @@
+<% content_for :title do %>Sobre o projeto Brasil Acessível<% end %>
+<div class="container">
+  <h1>Sobre o projeto Brasil Acessível <span><%= image_tag "logo.png" %></span></h1>
+  <p>
+    Portal de acessibilidade no Brasil. No portal Brasil Acessível você pode procurar por lugares que&nbsp;
+    fornecem lazer e possuem acessibilidade para cadeirantes, tais como, cinemas, bares, restaurantes,&nbsp;
+    hotéis, etc.
+  </p>
+  <h2>Estamos começando...</h2>
+  <p>
+    Estamos no início do projeto, neste momento o serviço que está sendo exposto é o de busca e cadastro de locais com acessibilidade no Brasil.
+    A busca por locais com acessibilidade pode ser feita facilmente pelo formulário de busca na barra de navegação superior do site. Como o cadastro dos locais será feito pelos próprios usuários e estamos no começo ainda existem poucos locais cadastradas, se você conhece um lugar ou serviço que tem acessibilidade ajude nossa comunidade e cadastre este local clicando <%= link_to '<i class="glyphicon glyphicon-map-marker"></i> aqui'.html_safe, new_place_path %>.
+  </p>
+</div>

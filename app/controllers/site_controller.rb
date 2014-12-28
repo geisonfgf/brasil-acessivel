@@ -9,7 +9,6 @@ class SiteController < ApplicationController
       @map_zoom = 12
       @map_central_cooordinates = Geocoder.coordinates(params[:address])
     end
-    render 'pages/index'
   end
 
   private

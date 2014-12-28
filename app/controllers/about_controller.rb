@@ -1,5 +1,4 @@
-class AboutController < ActionController::Base
+class AboutController < ApplicationController
   def index
-    render 'pages/about'
   end
 end
