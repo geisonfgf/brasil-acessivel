@@ -8,6 +8,8 @@ gem 'rails', '4.1.7'
 
 # Administration Interface
 gem 'activeadmin', github: 'activeadmin'
+# Administration Skins
+gem 'active_skin'
 
 # Use Twitter Bootstrap framework
 gem 'bootstrap-sass'

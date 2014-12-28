@@ -11,7 +11,18 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+$skinActiveColor: #337ab7;
+$skinHeaderBck: #000000;
+$panelHeaderBck: #000000;
+
+$skinLogo: url("brasil_accessivel_admin_logo.png") no-repeat 0 0;
+@import "active_skin";
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+thead th {
+  background: #dfdfdf !important;
+}

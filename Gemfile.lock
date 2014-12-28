@@ -35,6 +35,7 @@ GEM
     active_attr (0.8.5)
       activemodel (>= 3.0.2, < 5.0)
       activesupport (>= 3.0.2, < 5.0)
+    active_skin (0.0.8)
     activemodel (4.1.7)
       activesupport (= 4.1.7)
       builder (~> 3.1)
@@ -187,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_attr
+  active_skin
   activeadmin!
   activerecord-postgresql-adapter
   autoprefixer-rails
