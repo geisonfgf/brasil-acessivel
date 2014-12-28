@@ -32,8 +32,9 @@ class SiteController < ApplicationController
         :height => 50
       }
       @markers = Gmaps4rails.build_markers(@places_near) do |place, marker|
+        acessibility_level = ("<span><img src='" + view_context.image_path("ico_cadeira_rodas.png") + "' /></span>") * place.rating
         marker.picture image_marker
-        marker.infowindow "<h5>#{place.name}</h5><p>#{place.description}</p>"
+        marker.infowindow "<h4>#{place.name}</h4><h5><span>Acessibilidade:</span> #{acessibility_level}</h5><p>#{place.description}</p>"
         marker.lat place.latitude
         marker.lng place.longitude
       end
