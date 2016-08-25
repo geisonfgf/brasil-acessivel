@@ -5,10 +5,10 @@
 </div>
 
 <script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%= raw @markers.to_json %>);
-    handler.map.centerOn(<%= @map_central_cooordinates.to_json %>);
-    handler.getMap().setZoom(<%= @map_zoom %>);
+  var map = new google.maps.Map(document.getElementById("map"), {
+    zoom: <%= @map_zoom %>,
+    center: <%= @map_central_cooordinates.to_json %>
   });
+  var marker = new google.maps.Marker(<%= raw @markers.to_json %>);
+  marker.setMap(map);
 </script>
