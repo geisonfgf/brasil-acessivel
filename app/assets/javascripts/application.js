@@ -17,4 +17,6 @@
 //= require underscore
 //= require grids
 //= require gmaps/google
+//= require infobox_packed
+//= require markerclusterer
 //= require_tree .
