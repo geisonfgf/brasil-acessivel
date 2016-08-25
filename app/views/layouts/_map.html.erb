@@ -15,7 +15,7 @@
   <% end %>
   var infoWindowContent = [];
   <% @markers.each do |marker| %>
-  infoWindowContent.push('<%= marker[:infowindow] %>');
+  infoWindowContent.push("<%= marker[:infowindow].html_safe %>");
   <% end %>
       
   // Display multiple markers on a map
