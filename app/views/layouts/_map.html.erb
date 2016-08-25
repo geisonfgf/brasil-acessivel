@@ -5,10 +5,12 @@
 </div>
 
 <script>
-  var map = new google.maps.Map(document.getElementById("map"), {
+  var myLatlng = new google.maps.LatLng(<%= @map_central_cooordinates.lat %>, <%= @map_central_cooordinates.lng %>);
+  var mapOptions = {
     zoom: <%= @map_zoom %>,
-    center: <%= @map_central_cooordinates.to_json %>
-  });
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById("map"), mapOptions);
   var marker = new google.maps.Marker(<%= raw @markers.to_json %>);
   marker.setMap(map);
 </script>
