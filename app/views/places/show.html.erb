@@ -43,12 +43,39 @@
   </div>
 
   <script>
-    handler = Gmaps.build('Google');
-    handler.buildMap({ internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%= raw @markers.to_json %>);
-      handler.map.centerOn([<%= @place.latitude %>, <%= @place.longitude %>]);
-      handler.getMap().setZoom(14);
-    });
+    var myLatlng = new google.maps.LatLng(<%= @place.latitude %>, <%= @place.longitude %>);
+    var map = new google.maps.Map(document.getElementById("map"), { zoom: 14, center: myLatlng });
+
+    // Multiple Markers
+    var markers = [];
+    <% @markers.each do |marker| %>
+    markers.push(['Lugar Adaptado', <%= marker[:lat] %>, <%= marker[:lng] %>]);
+    <% end %>
+    var infoWindowContent = [];
+    <% @markers.each do |marker| %>
+    infoWindowContent.push(["<%= marker[:infowindow].html_safe %>"]);
+    <% end %>
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: ''
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+    }
   </script>
 
   <%= link_to 'Editar', edit_place_path(@place), class: 'btn btn-primary' %>
