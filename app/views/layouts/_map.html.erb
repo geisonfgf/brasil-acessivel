@@ -1,10 +1,14 @@
-<div class="col-md-12">
-  <div style='width: 760px;'>
-    <div id="map" style='width: 760px; height: 400px;'></div>
+<div class='col-md-12'>
+  <div id="div_map" style='width: 760px;'>
+    <div id='map' style='width: 760px; height: 400px;'></div>
   </div>
 </div>
 
 <script>
+  var map_width = (document.getElementById("div_map").parentElement.parentElement.parentElement.getBoundingClientRect().width - 30) + "px";
+  document.getElementById("div_map").style.width = map_width;
+  document.getElementById("map").style.width = map_width;
+
   var myLatlng = new google.maps.LatLng(<%= @map_central_cooordinates[0] %>, <%= @map_central_cooordinates[1] %>);
   var map = new google.maps.Map(document.getElementById("map"), { zoom: <%= @map_zoom %>, center: myLatlng });
 
@@ -17,11 +21,11 @@
   <% @markers.each do |marker| %>
   infoWindowContent.push(["<%= marker[:infowindow].html_safe %>"]);
   <% end %>
-      
+
   // Display multiple markers on a map
   var infoWindow = new google.maps.InfoWindow(), marker, i;
-  
-  // Loop through our array of markers & place each one on the map  
+
+  // Loop through our array of markers & place each one on the map
   for( i = 0; i < markers.length; i++ ) {
       var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
       marker = new google.maps.Marker({
@@ -29,8 +33,8 @@
           map: map,
           title: ''
       });
-      
-      // Allow each marker to have an info window    
+
+      // Allow each marker to have an info window
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
               infoWindow.setContent(infoWindowContent[i][0]);

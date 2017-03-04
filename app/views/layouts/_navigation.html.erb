@@ -1,52 +1,52 @@
 <div class="container">
+  <%= link_to "<span>#{image_tag 'brasil_accessivel_logo.png'}</span>&nbsp;Brasil Acessivel".html_safe, root_path, class: 'brand', id: 'logo' %>
   <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse">
     <span class="sr-only">Toggle navigation</span>
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </a>
-  <%= link_to "<span>#{image_tag 'brasil_accessivel_logo.png'}</span>&nbsp;Brasil Acessivel".html_safe, root_path, class: 'brand', id: 'logo' %>
-  <ul class="nav navbar-nav pull-left">
-    <li><%= link_to 'Ajude o Projeto', help_path %></li>
-    <!--li class="dropdown">
-      <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">
-        Serviços <b class="caret"></b>
-      </a>
-      <ul id="menu2" class="dropdown-menu dropdown-toggle" role="menu" aria-labelledby="drop5">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ônibus</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Táxi</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Translados</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Empregos</a></li>
-      </ul>
-    </li-->
-    <li><%= link_to 'Contato', new_contact_path %></li>
-  </ul>
-  <ul class="nav navbar-nav navbar-right">
-    <li>
-      <div>
-        <%= link_to '<i class="glyphicon glyphicon-map-marker"></i> Novo Local'.html_safe, new_place_path, class: 'btn btn-primary navbar-btn' %>
-      </div>
-    </li>
-    <li>
-      <form class="navbar-form" role="search" action="<%= root_path %>" method="GET">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="lugar, cidade, estado" name="address" id="search-terms">
-          <div class="input-group-btn">
-            <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      <ul class="nav navbar-nav pull-right">
+        <li><%= link_to 'Ajude o Projeto', help_path %></li>
+        <!--li class="dropdown">
+          <a class="dropdown-toggle" id="drop5" role="button" data-toggle="dropdown" href="#">
+            Serviços <b class="caret"></b>
+          </a>
+          <ul id="menu2" class="dropdown-menu dropdown-toggle" role="menu" aria-labelledby="drop5">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ônibus</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Táxi</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Translados</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Empregos</a></li>
+          </ul>
+        </li-->
+        <li><%= link_to 'Contato', new_contact_path %></li>
+      <!--/ul>
+      <ul class="nav navbar-nav navbar-right"-->
+        <li>
+          <div>
+            <%= link_to '<i class="glyphicon glyphicon-map-marker"></i> Novo Local'.html_safe, new_place_path, class: 'btn btn-primary navbar-btn' %>
           </div>
-        </div>
-      </form>
-    </li>
-    <% if user_signed_in? %>
-    <li><div class="navbar-text text-blank">Olá <%= current_user.email %></div></li>
-    <li>
-      <div>
-        <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
-      </div>
-    </li>
-    <% else %>
-    <li><div><%= link_to "Registrar", new_user_registration_path, class: 'btn btn-default navbar-btn register-button' %></div></li>
-    <li><div><%= link_to "Logar", new_user_session_path, class: 'btn btn-success navbar-btn' %></div></li>
-    <% end %>
-  </ul>
+        </li>
+        <li>
+          <form class="navbar-form" role="search" action="<%= root_path %>" method="GET">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="lugar, cidade, estado" name="address" id="search-terms">
+              <div class="input-group-btn">
+                <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <% if user_signed_in? %>
+        <li><div class="navbar-text text-blank">Olá <%= current_user.email %></div></li>
+        <li>
+          <div>
+            <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: 'btn btn-default navbar-btn' %>
+          </div>
+        </li>
+        <% else %>
+        <li><div><%= link_to "Registrar", new_user_registration_path, class: 'btn btn-default navbar-btn register-button' %></div></li>
+        <li><div><%= link_to "Logar", new_user_session_path, class: 'btn btn-success navbar-btn' %></div></li>
+        <% end %>
+      </ul>
 </div>
