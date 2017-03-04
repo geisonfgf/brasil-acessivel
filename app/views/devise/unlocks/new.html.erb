@@ -23,6 +23,6 @@
   <% end -%>
   &nbsp;
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= link_to "Não recebeu as intruções de confirmação?", new_confirmation_path(resource_name), class: 'btn btn-default' %><br />
+    <%= link_to "Reenviar intruções de confirmação?", new_confirmation_path(resource_name), class: 'btn btn-default' %><br />
   <% end -%>
 </div>

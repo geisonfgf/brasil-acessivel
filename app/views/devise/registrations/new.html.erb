@@ -17,10 +17,10 @@
   <% end -%>
   &nbsp;
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= link_to "Não recebeu as intruções de confirmação?", new_confirmation_path(resource_name), class: 'btn btn-default' %>
+    <%= link_to "Reenviar intruções de confirmação?", new_confirmation_path(resource_name), class: 'btn btn-default' %>
   <% end -%>
   &nbsp;
   <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-    <%= link_to "Não recebeu as informações de desbloqueio?", new_unlock_path(resource_name), class: 'btn btn-default' %>
+    <%= link_to "Reenviar informações de desbloqueio?", new_unlock_path(resource_name), class: 'btn btn-default' %>
   <% end -%>
 </div>
