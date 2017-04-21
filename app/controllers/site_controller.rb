@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   before_action :set_markers, only: [:index]
 
   def index
-    if params[:address].nil?
+    if params[:address].nil? or params[:address] == ""
       @map_zoom = 4
       @map_central_cooordinates = Geocoder.coordinates("Brasil")
     else
@@ -18,8 +18,11 @@ class SiteController < ApplicationController
         @places = Place.all
       else
         @places = Place.where("name LIKE '%#{params[:place]}%'")
+        if @places.nil? or @places.empty?
+          @places = Place.all
+        end
       end
-      params[:address].nil? ? address = 'Brasil' : address = params[:address]
+      params[:address].nil? or params[:address] == "" ? address = 'Brasil' : address = params[:address]
       if address == 'Brasil'
         @places_near = @places.near(address, 7500, :unit => :km)
       else
