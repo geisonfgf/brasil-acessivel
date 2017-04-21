@@ -14,7 +14,11 @@ class SiteController < ApplicationController
   private
 
     def set_places_near_by
-      @places = Place.all
+      if params[:place].nil?
+        @places = Place.all
+      else
+        @places = Place.where("name LIKE '%#{params[:place]}%'")
+      end
       params[:address].nil? ? address = 'Brasil' : address = params[:address]
       if address == 'Brasil'
         @places_near = @places.near(address, 7500, :unit => :km)
