@@ -17,12 +17,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'geisonfgf',
-    :password => 'rj204205',
-    :domain => 'brasilacessivel.com.br',
-    :address => 'smtp.sendgrid.net',
+    :user_name => 'bracessivel',
+    :password => 'br204205',
+    :domain => 'gmail.com',
+    :address => 'smtp.gmail.com',
     :port => 587,
-    :authentication => :plain,
+    :authentication => :login,
     :enable_starttls_auto => true
   }
 
