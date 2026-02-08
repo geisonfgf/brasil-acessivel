@@ -1,0 +1,489 @@
+﻿UNIVERSIDADE DO VALE DO RIO DOS SINOS - UNISINOS
+UNIDADE ACADÊMICA DE GRADUAÇÃO
+CURSO DE SISTEMAS DE INFORMAÇÃO
+
+
+
+
+GEISON FELIPE GOES FLORES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BRASIL ACESSÍVEL:
+Um Aplicativo Web para Gerenciamento de Lugares Acessíveis a Cadeirantes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+São Leopoldo - RS
+2022
+GEISON FELIPE GOES FLORES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BRASIL ACESSÍVEL:
+Um Aplicativo Web para Gerenciamento de Lugares Acessíveis a Cadeirantes
+
+
+
+
+Artigo apresentado como requisito parcial para obtenção do título de Bacharel em Sistemas de Informação, pelo Curso de Sistemas de Informação da Universidade do Vale do Rio dos Sinos (UNISINOS).
+
+
+Orientador (a): Prof. Dr. João Elison da Rosa Tavares
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+São Leopoldo - RS
+2022
+BRASIL ACESSÍVEL: 
+Um Aplicativo Web para Gerenciamento de Lugares Acessíveis a Cadeirantes
+
+
+ACCESSIBLE BRAZIL: 
+A Web Application to Manage Accessible Places for Wheelchair Users
+Geison Felipe Goes Flores[1]*
+João Tavares [2]**
+
+
+Resumo: Este estudo teve por intuito desenvolver um aplicativo web, que possa ser utilizado como uma ferramenta relacionada ao cotidiano para que indivíduos que manifestam algum tipo de deficiência física e que fazem uso de cadeira de rodas, possam encontrar locais com acessibilidade adequada ao seu perfil de deficiência próximos à sua localização. Neste estudo, são citados os conceitos-chave de acessibilidade, as leis que a regulamentam e sobretudo as tecnologias necessárias para o desenvolvimento da aplicação, em particular, geolocalização e o padrão para descrever a acessibilidade do mundo físico A11yJSON. Este artigo apresenta ainda dois cenários baseados no aplicativo Brasil Acessível que consome dados de locais com acessibilidade da API accessibility.cloud e utiliza a API do Google Maps para plotar locais com a classificação de acessibilidade representada por estrelas em um mapa. Como resultado o aplicativo se mostrou capaz de plotar mapas, classificar os locais por níveis de acessibilidade, atualizar dados de locais já existentes e através do assistente para acessibilidade suportar os cadeirantes fornecendo a localização de recursos próximos. 
+
+
+Palavras-chave: A11yJSON, GeoJSON, aplicativo web, acessibilidade.
+
+
+Abstract: This study aimed to develop a web application that can be used as a tool related to everyday life so that individuals who manifest some type of physical disability and who use a wheelchair can find places with adequate accessibility to their disabilities profile near your location. In this study, the key concepts of accessibility, the laws that regulate it and above all the technologies necessary for the development of the application are cited, in particular, geolocation and the standard for describing the accessibility of the physical world A11yJSON. This article also presented two scenarios based on the Brazil Acessível application that consume data of accessible locations from the accessibility.cloud API and used the Google Maps API to plot locations on a map. As a result, the application was able to plot maps, classify locations by accessibility levels, update data from existing locations and, through the accessibility assistant, support wheelchair users by providing the location of nearby resources.
+
+
+Keywords: A11yJSON, GeoJSON,  web application, accessibility.
+________________
+1 INTRODUÇÃO
+De acordo com a lei Lei Nº 10.098, de 19 de dezembro de 2000, acessibilidade seria a possibilidade e condição de alcance para a utilização, com segurança e autonomia, de espaços, mobiliários, equipamentos urbanos, edificações, transportes, informação e comunicação, inclusive seus sistemas e tecnologias, bem como de outros serviços e instalações abertos ao público, de uso público ou privados de uso coletivo, tanto na zona urbana como na rural, por pessoa com deficiência ou com mobilidade reduzida . Apesar da legislação existente e do conjunto de normas disponíveis, observa-se que uma grande parte das edificações públicas não está preparada para atender as necessidades de acessibilidade da grande diversidade de usuários visto a falta de banheiros adaptados e acessos com escadas que se podem encontrar facilmente nos grandes centros urbanos.
+De acordo com o Censo Demográfico de 2010 mais de 45,6 milhões de brasileiros declararam ter alguma deficiência, que representa 23,9% da população brasileira (IBGE, 2010). No artigo 2, da Lei 13.146 de 2015 – Estatuto da Pessoa com Deficiência:
+ “considera-se pessoa com deficiência aquela que tem impedimento de longo prazo de natureza física, mental, intelectual ou sensorial, o qual, em interação com uma ou mais barreiras, pode obstruir sua participação plena e efetiva na sociedade em igualdade de condições com as demais pessoas” (BRASIL, 2015).
+Na mesma lei artigo 3, inciso IX  prevê o conceito de:
+“pessoa com mobilidade reduzida: aquela que tenha, por qualquer motivo, dificuldade de movimentação, permanente ou temporário, gerando redução efetiva da mobilidade, da flexibilidade, da coordenação motora ou da percepção, incluindo idoso, gestante, lactante, pessoa com criança de colo, obeso” (BRASIL, 2015).
+A acessibilidade física é fundamental para garantir a inclusão social de pessoas com deficiência. É necessário proporcionar condições igualitárias de acesso aos espaços públicos para que todos possam usufruir de seus direitos.
+Contudo, existem muitos locais a exemplo dos Shopping Centers que seguem as regras de acessibilidade definidas na lei nº 10.098 de 19 de dezembro de 2000, que estabelece normas gerais e critérios básicos para a promoção da acessibilidade das pessoas com deficiência física ou com mobilidade reduzida, mediante a supressão de barreiras e de obstáculos nas vias e nos espaços públicos, no mobiliário urbano, na construção e reforma de edifícios e nos meios de transporte e de comunicação (BRASIL, 2000). Entretanto, para saber quais locais são adaptados, é preciso entrar em contato ou visitar o local fisicamente.
+Existe um repositório chamado acessibility.cloud[3] que é aberto a consultas e fornece dados geolocalizados seguindo o padrão A11yJSON[4]. Este repositório tem por objetivo descrever a acessibilidade do mundo físico, mas este ainda não é amplamente difundido e não está sendo utilizado atualmente em nenhuma aplicação aberta ao público do Brasil.
+Nesse contexto, o objetivo geral desta pesquisa focou em desenvolver um protótipo de aplicativo web que possibilite a pessoas que apresentam algum tipo de deficiência física encontrar locais com acessibilidade perto de sua região geográfica ou próximo a um local especificado pelo usuário de acordo com seu perfil de deficiência.
+Os objetivos específicos foram: (1) construir um referencial teórico sobre tecnologias voltadas a programação para geoprocessamento; (2) desenvolver a análise e projeto de uma aplicação que contemplem o uso de tecnologias de geoprocessamento, utilizando linguagem UML; (3) projetar e desenvolver um protótipo (software) fazendo uso das principais linguagens de programação web HTML, CSS, Javascript, JSON e Google Maps; (4) fazer uso do arquétipo de dados A11yJSON que permite uma consulta geolocalizada por locais públicos e com resposta ordenada por nível de acessibilidade; (6) testar o protótipo desenvolvido e suas funcionalidades; (7) avaliar os resultados obtidos.
+Esta pesquisa justificou-se pelo fato de muitas vezes ao visitar um local desconhecido cadeirantes podem vir a ter a desagradável surpresa de se deparar com uma escada na entrada ou um banheiro em que a cadeira não passa na porta, isso pode ocorrer em estabelecimentos comuns como hotéis, restaurantes, cinemas, teatros ou órgãos públicos sediados em edifícios muito antigos inexistindo atualmente um aplicativo que classifique os locais pelo seu nível de acessibilidade arquitetônica.
+Sendo assim, a criação do protótipo proposto neste trabalho se justifica, uma vez que, poderia evitar que esse tipo de situação ocorresse, permitindo que usuários pesquisem previamente o nível de acessibilidade de locais que pretendem visitar.
+O artigo está organizado em sete seções. A Seção 2 descreve o referencial teórico estudado para o desenvolvimento do aplicativo Brasil Acessível. A terceira seção apresenta os trabalhos relacionados. A quarta seção traz a análise de requisitos desenvolvida para o desenvolvimento do aplicativo Brasil Acessível. A quinta seção apresenta o aplicativo. A sexta seção apresenta dois cenários que descrevem o uso da aplicação Brasil Acessível por PCDs. A Seção 7 discute limitações e trabalhos relacionados, avaliando a proposta. Por fim, a seção 8 apresenta conclusões e trabalhos futuros.
+2 FUNDAMENTAÇÃO TEÓRICA
+Esta seção oferece uma visão geral sobre os sistemas de informação com busca georeferenciada. Os tópicos que a compõem abordam: os aspectos conceituais sobre, referencia espacial, projeção de mapas, o formato para codificar uma variedade de estruturas de dados geográficos GeoJSON, o padrão para descrever a acessibilidade do mundo físico A11yJSON e sistemas web.
+2.1 Sistemas de Referência Espacial
+O que distingue Sistemas de Referência Espacial de outros sistemas informatizados é a sua competência de manusear dados espaciais, ou seja, dados que de alguma forma estejam correlacionados a um sistema de referência geográfica. Um dos formatos utilizados é o GeoJSON que teve sua RFC 7946[5] publicada em agosto de 2016 e é a nova especificação padrão do formato GeoJSON[6], substituindo a especificação GeoJSON de 2008.
+De acordo com Miranda (2010), os sistemas de referência não estão limitados apenas a latitude e longitude ou Universal Transverse Mercator (UTM), contudo existem também, os sistemas de referências específicos, e com esse tema, introduz-se a concepção de “Datum”. Fazendo-se referência a diversos outros sistemas de referência existentes.
+2.1.1 Sistema de Referência Espacial de Latitude-Longitude
+Um sistema de coordenadas ou de referência é útil para localizar um objeto no espaço e o sistema mais utilizado é o sistema cartesiano. Na condição de localização de objetos na superfície da terra, o sistema tem um agravante por causa da esfericidade do planeta e, nesse caso, medidas angulares são inseridas aos elementos do sistema cartesiano (MIRANDA, 2010). Medidas angulares usam uma escala sexagesimal, ou seja, a divisão do círculo em 360 graus, cada grau em 60 minutos e cada minuto em 60 segundos.
+        O planeta gira em torno de um eixo imaginário denominado de eixo de rotação, e caso esse eixo seja prolongado, passará por uma estrela conhecida como Estrela do Norte. O local na terra onde o eixo de rotação surge é denominado como Norte Geográfico ou Polo Norte e o ponto oposto é denominado de Sul Geográfico ou Polo Sul. Esses pontos são essenciais visto que o sistema de coordenadas geométricas da Terra encontra-se baseado neles (MIRANDA, 2010).
+        Neste sentido, os valores de latitude e longitude de qualquer lugar determinam as coordenadas geográficas de um ponto da Terra. Sua semelhança com o sistema de coordenadas planas cartesianas é visível, logo, para determinar um sistema de projeção de mapas, deve-se a princípio compreender o sistema de coordenadas da Terra.
+2.1.2 Sistema de Projeção de Mapas
+A projeção de um mapa é um ponto importante no mapeamento temático. As projeções são essenciais para o projetista, porque servem para evidenciar a atenção do leitor, para amplificar e para providenciar detalhes seletivos para a mensagem do mapa. Todo mapa temático precisa ter uma projeção, contudo possa ser identificado sem projeção (MIRANDA, 2010).
+        Ainda segundo MIRANDA (2010), o assunto projeções de mapas é observado como responsabilidade e inquietação apenas de cartógrafos. Diversas vezes, usuários de Sistema de Informações Geográficas (SIG), desconsideram esse importante assunto da representação espacial, porém agora o tema é delimitado com mais importância por causa da crescente difusão do uso de SIG e com tudo que diz respeito a geoprocessamento, como agricultura de precisão, posicionamento por satélite e sensoriamento remoto por satélites.
+2.2 Serviços Baseados em Localização
+Existem diversas definições para o termo Location-Based Services, não se pode determinar que uma designação é mais válida do que outra porque depende da óptica e terminologias de cada área em que são estudadas e desenvolvidas, como é o das áreas de telecomunicações e da computação que empregam esse tipo de tecnologia. Como evidenciado em (FERRARO, 2010) serviços fundamentados em localização são: “Um serviço de informação, acessível a partir de dispositivos móveis através de uma rede móvel, que utiliza a habilidade de fazer uso da posição geográfica do dispositivo.”
+Outra delimitação é transmitida por (KUPPER, 2005) em que a GSM Association[7] define serviço baseado em localização como serviços que utilizam a localização de um 'alvo' para adicionar valor ao serviço, onde este 'alvo' seria o lugar a ser localizado. Onde são citados como exemplos de valores adicionais que são proporcionados por esse serviço, a apresentação da localização de um alvo em um mapa ou a ativação automática de um serviço disparada pela aproximação a uma determinada localização, como por exemplo, o uso de frases como: “Onde eu estou?” (Referente à localização do usuário); “O que posso fazer por perto?” Referente à informações espaciais relacionadas com a localização do usuário; “O que eu acho nesse lugar?”, Referente à interação utilizando a localização e o contexto. Aplicativos como o Google Maps se encaixam nessa definição.
+        Outro grupo de serviços conhecidos como context-aware services (KUPPER, 2005), onde os serviços baseados em localização são tidos como um subconjunto deles. Os context-aware services são delimitados como sendo serviços que adaptam de forma automática seu comportamento, com relação a um ou mais parâmetros correlacionados ao contexto em que o dispositivo alvo se encontra.
+2.3 A11yJSON
+De acordo com a documentação oficial[8] o A11yJSON é um padrão aberto baseado em GeoJSON (RFC 7946). Seu objetivo é tornar a troca de informações de acessibilidade mais padronizada. Esse padrão especifica esquemas de dados que descrevem: (1) lugares reais; (2) amenidades locais; (3) instalações sanitárias; (4) mídia física e serviços; (5) políticas que podem ser barreiras (permitir acesso a cães); (6) escadas rolantes e elevadores (incluindo seu status operacional em tempo real).
+A Figura 1 apresenta um exemplo de dados no formato A11yJSON válido:
+Figura 1 – Exemplo de dados no formato A11yJSON.  
+Fonte: (A11yJSON, 2022)
+2.4 Aplicações Web
+Segundo Christodoulou et al. [apud Mendes et al. 2004] aplicações Web são divididas em duas categorias, as do tipo hipermídia, não convencional, caracterizadas pela publicação de informação utilizando nós, links, ancoras, estruturas de acesso e disponibilizada através da Web e/ou aplicações de software Web que são software hospedado na internet e não instalado no computador que pode ser acessado através de qualquer navegador. As aplicações web permitem interatividade sem que seja necessário baixar programas para o seu dispositivo, o termo aplicação Web representa uma aplicação que possui características de ambas aplicações hipermídia Web e aplicações de software Web.
+3 TRABALHOS RELACIONADOS
+Esta seção apresenta os trabalhos relacionados. Uma vez determinada a área de conhecimento da pesquisa, foram escolhidas as palavras-chave "sistemas web" + "locais com acessibilidade" que foram utilizadas na busca de referências. Os artigos foram escolhidos nos bancos de dados: Scielo[9], Google Acadêmico[10], Banco de Dados de teses e dissertações: CAPES[11].
+Os primeiros passos específicos ao mapeamento de rotas acessíveis para deficientes físicos motores tiveram início em plataformas com base na web. U-Access, foi um dos primeiros dispositivos com este objetivo (SOBEK & MILLER, 2006), dispositivo que consente ao usuário formular suas rotas para navegação, com base em três níveis de habilidade dos usuários. Estes níveis eram determinados de acordo com a mobilidade: usuários que conseguiam se locomover sem auxilio, usuários que precisavam de ajuda para se locomover e usuários em cadeiras de rodas. Um algoritmo próprio era utilizado para integrar dados de diversas bases de dados espaciais e de georreferenciamento.
+Enquanto que em 2008, apareceram as primeiras iniciativas empregando plataforma móvel, a citar como por exemplo a OurWay (HOLONE & MISUND, 2008). Este projeto teve início com aplicação de uma abordagem diferenciada do planejamento de rotas, utilizando a cooperação dos usuários, ao invés de planejamento de rota personalizada. Os criadores do projeto assentiram aos participantes organizar grupos fundamentados em sua auto identificação, com base no princípio de que indivíduos são tendenciosos a se reunir em função de necessidades e expectativas análogas. Os dados fornecidos pelos usuários eram usados em união com o OpenStreetMap. Identifica-se assim o primeiro surgimento da inteligência coletiva assessorando iniciativas correlacionadas ao planejamento de rotas, ainda que em sua forma mais simples. 
+Kulakov et al. (2015) difundiram o Social Navigator, um sistema de cálculo de rotas acessíveis, no qual a finalidade é ser usado como API para outros sistemas. Neste sistema é possível especificar um ponto de interesse da rota como seguro ou inseguro. Dados obtidos a partir dos usuários são combinados, através de algoritmos próprios de classificação da informação, a dados retirados do Open Street Map. 
+Bolten et al. (2015) apresentaram um projeto que leva em consideração os dados abertos concedidos por municípios norte-americanos, tendo atenção a informações como rampas, altimetria, defeitos em calçadas entre outros. O sistema proposto faz uso de um algoritmo próprio, com base em grafos, para o desenvolvimento das rotas. Neste estudo os autores levam em consideração o tipo da cadeira de rodas que é utilizado, automatizado ou não, para indicar, por exemplo, uma rota mais extensa, mas mais fácil, ou uma rota mais curta com um grau de obstáculo superior, permitindo ao usuário determinar suas preferências e particularidades, que são levadas em consideração na realização do cálculo da rota. 
+Kozievitch et al. (2016) sugeriram um modelo para criação de rotas para usuários de cadeiras de rodas fazendo uso dos dados abertos da cidade de Curitiba, concedidos pelo Instituto de Planejamento Urbano da cidade. Este organizador de rotas faz o próprio cálculo de rotas, não faz uso de nenhum API de terceiros. A principal diferença, além do fato de ter bases em calçadas, cruzamentos e rampas de acesso, é que aplica os dados abertos também para levar em consideração as camadas das vias, como: hidrografia, fronteiras e, o principal para cadeirantes, a questão da elevação (altimetria).
+Hefestos (Tavares, et al., 2016) apresentou um projeto de ferramenta para suporte de acessibilidade ubíqua onde o usuário faz uso de um disposítivo em sua cadeira de rodas que permite mapear rampas de acesso, estacionamentos especiais, banheiros acessíveis, cantinas e cabines de informações, deste modo cada usuário faz parte da construção da base de dados de locais. 
+Em Free Access (2018) a proposta consiste na criação de um sistema web responsivo, também em versão de aplicativo. No sistema também é possível que o usuário realize avaliações dos locais que visitar, respondendo algumas perguntas de forma simples. Diferentemente da proposta do protótipo deste trabalho o Free Access não possuí mapas e busca referênciada em latitude e longitude.
+Em Caminho Livre (2018) propõe-se uma ideia de construção de uma base de dados com a ajuda dos próprios usuários. Neste caso, da sociedade que colaboram com informações sobre os lugares com acessibilidade. Esse modo de produção é característico do crowdsourcing, em que uma ou mais tarefas são realizadas por um grande grupo de pessoas e não por funcionários específicos (HOWE, 2006).
+Além de não utilizar uma base de dados de mapas como base, este projeto também se diferencia do nosso em relação ao escopo de atuação, escolhendo ficar restrito a apresentar dados apenas de locais que se encontram dentro da Universidade Federal da Paraíba. Ainda assim, as funcionalidades bases como mostrar os locais sobre um mapa e visualizar detalhes dos locais ao clicar neles estão presentes aqui também.
+Em Moova (2018) é apresentado uma pesquisa e a proposta de um aplicativo com foco em acessibilidade. Onde os usuários fariam buscas por tipos de estabelecimentos.
+
+
+O Quadro 1 apresenta um comparativo entre os trabalhos, considerando.
+* Utiliza mapas;
+* Busca referenciada em latitude e longitude;
+* Uso do repositório accessibility.cloud;
+* Utilização do padrão de dados A11yJSON;
+* Assistente que filtra os resultados por nível de acessibilidade.
+
+
+
+
+Quadro 1 - Comparativo entre os trabalhos relacionados
+Trabalho
+	Utiliza mapas
+	Uso do repositório accessibility.cloud
+	Utilização do padrão de dados A11yJSON
+	Busca referenciada em latitude e longitude
+	Assistente que filtra os resultados por nível de acessibilidade
+	U-Access (2006)
+	Sim
+	Não
+	Não
+	Não
+	Não
+	Social Navigator (2015)
+	Não
+	Não
+	Não
+	Sim
+	Não
+	Hefestos
+(2016)
+	Sim
+	Não
+	Não
+	Não
+	Não
+	Free Access (2018)
+	Não
+	Não
+	Não
+	Não
+	Não
+	Caminho Livre(2018)
+	Sim
+	Não
+	Não
+	Não
+	Não
+	Moova
+(2019)
+	Não
+	Não
+	Não
+	Não
+	Não
+	Brasil Acessível
+(2022)
+	Sim
+	Sim
+	Sim
+	Sim
+	Sim
+	Fonte: Elaborado pelo autor
+Ao analisar o Quadro 1 comparativo dos trabalhos relacionados, é possível verificar que cada trabalho apresenta e realiza o foco em alguns dos quesitos, mas não todos. OurWay (2008) utiliza uma abordagem diferente no planejamento de rotas, com a colaboração dos usuários, em vez de planejamento de rota personalizada, não possuindo foco nos níveis de acessibilidade, enquanto que Social Navigator (2015) trata-se de um sistema de cálculo de rotas acessíveis, cuja finalidade é ser utilizado como API para outros sistemas. Neste sistema é possível classificar um ponto de interesse da rota como seguro ou inseguro. E os dados são obtidos a partir dos usuários e são combinados, por meio de algoritmos próprios de classificação da informação. Nenhum deles faz uso de um formato de dados voltado a descrever acessibilidade em locais, tal qual o formato A11yJSON, e também não faz uso de uma base de dados como o accessibility.cloud que disponibilize os dados nesse formato.
+O trabalho Brasil Acessível se propõe a atingir todos os requisitos mencionados, disponibilizando um protótipo acessível pela web, que permite fazer buscas georreferenciadas no repositório accessibility.cloud por locais com acessibilidade, representados pelo formato A11yJSON que provê as informações necessárias para se ter um algoritmo de classificação dos locais por níveis de acessibilidade. O aplicativo também permite filtrar os resultados pelo nível de acessibilidade que cada local foi classificado e possuí um modo de assistencia que filtra os locais mais acessíveis para cadeirantes. Por fim, o aplicativo também permite cadastrar ou alterar informações de acessibilidade de locais selecionados.
+4 METODOLOGIA
+Com relação aos objetivos propostos para a realização desta pesquisa, pode-se classificar essa etapa como sendo uma pesquisa exploratória (GIL, 1991). Para GIL, a pesquisa exploratória é, de certa forma, uma característica de todo trabalho científico. Por meio dela é possível ter maior familiaridade com o problema, na intenção de torná-lo mais explícito. A pesquisa exploratória tem por finalidade aprimorar ideias e levantar hipóteses sobre assuntos novos ou pouco explorados.
+A metodologia adotada neste trabalho foi composta por três momentos sequenciais e complementares: contextualização, desenvolvimento e aplicação. Na contextualização foi feita uma revisão bibliográfica, voltada a identificar as principais características dos sistemas de Referência Espacial de Latitude-Longitude baseados em mapas. Além de contextualizar a pesquisa, constituiu o alicerce necessário para a definição e uso de um modelo de dados para o desenvolvimento de um sistema de recomendação de lugares com acessibilidade.
+Para o segundo momento da pesquisa que se refere ao desenvolvimento foi feito a definição de um procedimento de análise de requisitos para o desenvolvimento de um protótipo de sistemas de recomendação de lugares com acessibilidade, que atenda os requisitos expostos nos diagramas de caso de uso e de sequência expostos nas subseções a seguir.
+4.1 Diagrama de Caso de Uso        
+O diagrama de caso de uso é um mapeamento da aplicação que mostra, de modo geral, como o usuário poderá interagir com a mesma. Segundo Guedes (2011), o diagrama de casos de uso busca, de forma simples, possibilitar a compreensão do comportamento externo do sistema por qualquer pessoa, tentando apresentar o sistema por meio da perspectiva do usuário.
+A Figura 2 expõe o diagrama de caso de uso que demonstra todas as funcionalidaes que o usuário irá iteragir dentro da interface do aplicativo Brasil Acessível.
+Figura 2 – Casos de uso das funcionalidades do Brasil Acessível.   
+Fonte: Elaborado pelo autor
+O Quadro 2 apresenta detalhadamente os casos de uso do aplicativo Brasil Acessível.
+Quadro 2 - Descrição dos casos de uso das funcionalidades
+1º Caso de uso: Acessar o site
+	Descrição
+	Usuário acessa o site em um navegador de internet.
+	Fluxo principal
+	Usuário abre o site que carrega um mapa na posição mais próxima do usuário e os locais públicos posicionados sobre o mapa.
+	Pré-condição
+	Usuário deve possuir conexão com internet.
+	Pós-condição
+	Exibir todos os locais públicos listados na região onde o usuário se encontra.
+	2º Caso de uso: Buscar por local com acessibilidade
+	Descrição
+	Realizar busca por região na tela principal do site.
+	Fluxo principal
+	Usuário digita nome do local desejado no campo de pesquisa.
+	Pré-condição
+	Usuário deve possuir conexão com internet.
+	Pós-condição
+	Se o local digitado existir o mapa será redirecionado a região mostrando os locais públicos próximos.
+	3º Caso de uso: Mostrar detalhes de um local
+	Descrição
+	Selecionar um espaço físico dentre um conjunto de opções visíveis sobre o mapa.
+	Fluxo principal
+	O usuário clica em cima do nome do local exibido.
+	Pré-condição
+	Usuário deve possuir conexão com internet.
+	Pós-condição
+	Será exibido as informações do local selecionado à direita do mapa.
+	4º Caso de uso: Assistente de acessibilidade
+	Descrição
+	Filtrar os resultados trazendo apenas os locais em uma distância de no máximo 2500 metros e com maior nível de acessibilidade.
+	Fluxo principal
+	O usuário seleciona a opção de assistente de acessibilidade no formulário de filtros.
+	Pré-condição
+	Usuário deve possuir conexão com internet.
+	Pós-condição
+	Serão exibidos os locais públicos em uma distância de no máximo 2500 metros do usuário com maior nível de acessibilidade.
+	5º Caso de uso: Filtrar resultados pelo perfil de usuário
+	Descrição
+	Filtrar os resultados obtidos especificando um perfil de deficiência.
+	Fluxo principal
+	O usuário seleciona a opção que mais se encaixa com sua limitação física no formulário de filtros.
+	Pré-condição
+	Usuário deve possuir conexão com internet.
+	Pós-condição
+	Serão exibidos os locais públicos próximos que se encaixam nos critérios de filtro.
+	6º Caso de uso: Salvar dados dos locais
+	Descrição
+	Salvar perfil de acessibilidade dos locais no formato A11yJSON.
+	Fluxo principal
+	O usuário preenche o formulário com as características de acessibilidade do local e reporta sua opinião.
+	Pré-condição
+	O usuário deve ter selecionado um local.
+	Pós-condição
+	Os dados serão enviados à acessibility.cloud.
+	
+
+4.2 Diagrama de Sequência
+Para descrever os principais fluxos do protótipo foram utilizados diagramas de sequência que segundo Ivar Jacobson (1992) ilustram a sequência das mensagens entre objetos em uma interação. Eles consistem de grupos de objetos representados por linhas de vida e as mensagens que eles trocam durante a interação.
+A Figura 3, mostra todas as interações entre os sistemas e dados trafegados entre eles, de modo a carregar a tela principal do site apresentando o mapa e locais com acessibilidade com base na localização do usuário.
+Figura 3 – Diagramas de sequência do caso de uso 1.   
+Fonte: Elaborado pelo autor
+A Figura 4, descreve as interações necessárias entre os sistemas para que quando o usuário forneça um endereço diferente do qual ele se encontra, sejam carregados na tela o mapa e os locais com acessibilidade tendo como referência o endereço fornecido pelo usuário.
+Figura 4 – Diagramas de sequência do caso de uso 2.   
+Fonte: Elaborado pelo autor
+A Figura 5, apresenta o fluxo de ações que ocorre quando o usuário seleciona um dos locais exibidos no mapa para que detalhes sobre o local sejam apresentados.
+Figura 5 – Diagramas de sequência do caso de uso 3.  
+Fonte: Elaborado pelo autor
+A Figura 6, apresenta o fluxo de ações que ocorre quando o usuário seleciona a opção assistente de acessibilidade e o filtro dessa opção é executado.
+Figura 6 – Diagramas de sequência do caso de uso 4.  
+Fonte: Elaborado pelo autor
+A Figura 7, trata de apresentar as interações que ocorrem quando o usuário filtra as opções de locais apresentados a ele de acordo com o tipo de deficiência.
+Figura 7 – Diagramas de sequência do caso de uso 5.  
+Fonte: Elaborado pelo autor
+A Figura 8, explica o que ocorre quando o usuário fornece e salva os dados de um local.
+Figura 8 – Diagramas de sequência do caso de uso 6.  
+Fonte: Elaborado pelo autor
+O próximo passo da pesquisa corresponde à aplicação do sistema de recomendação de locais com acessibilidade, visando analisar a sua adequação para a solução do problema.
+5 Brasil Acessível
+A fim de atingir os objetivos do presente estudo, foi desenvolvida uma aplicação de código aberto, para a visualização de informações georreferenciadas na qual se pode procurar por lugares que possuem acessibilidade em diferentes níveis, tais como, bares, restaurantes, hotéis, etc. O código da aplicação pode ser acessada no site Github[12] e a aplicação pode ser acessada pelo site https://brasil-acessivel.netlify.app.
+O projeto Brasil Acessível tem uma arquitetura cliente-servidor, conforme Donahoo e Calvert (2009). O projeto consiste de uma aplicação cliente que se comunica com as aplicações do Google Maps solicitando dados para a montagem dos mapas e após se comunica com a aplicação acessibility.cloud para buscar dados dos locais que se encontram na região disponibilizada pelo usuário. Também existe um módulo responsável pela classificação dos locais por nível de acessibilidade.
+Na Figura 9 expõe-se a arquitetura da aplicação proposta, na qual a direção das setas indica a direção do fluxo de dados. Sendo assim, a imagem demonstra a separação de cada módulo e a comunicação entre os sistemas envolvidos na solução.
+Figura 9 – Arquitetura do Brasil Acessível.  
+Fonte: Elaborado pelo autor
+A aplicação de visualização é o módulo central do aplicativo Brasil Acessível, é nela que as ações se iniciam e ocorre a orquestração de eventos e comunicação entre todos os módulos.
+O módulo de renderização de mapas é responsável por receber como entrada coordenadas de latitude e longitude ou um endereço, passar esses dados para a API do Google Maps e renderizar o mapa retornado na localização adequada.
+O módulo de consulta e filtros é responsável por fazer a consulta dos dados no repositório accessibility.cloud e filtrar os resultados de acordo com os filtros de nível de acessibilidade disponíveis.
+O módulo de salvamento de dados trata de coletar os dados disponibilizados pelo usuário sobre um local já existente, criar um objeto A11yJSON e enviá-lo ao repositório accessibility.cloud.
+O módulo assistente de acessibilidade simplifica o filtro para o usuário aplicando uma heurística que filtra os resultados trazendo apenas os locais em uma distância de no máximo 2500 metros e com maior nível de acessibilidade.
+A aplicação foi inteiramente desenvolvida no editor Visual Studio Code[13] que é um editor de código-fonte desenvolvido pela Microsoft para Windows, Linux e macOS. A linguagem de programação Javascript foi escolhida por ser juntamente com HTML e CSS, uma das três principais tecnologias utilizadas para desenvolvimento web e a única a ser interpretada nativamente pelos navegadores de internet.
+5.1 Mapa de navegação
+Para a exibição do mapa de navegação no aplicativo a ser executado no navegador de internet, duas opções foram consideradas: o Google Maps[14] e o OpenStreetMap[15].
+O OpenStreetMap é um “mapa gratuito e editável”. Seu sistema é colaborativo, alimentado pelos próprios usuários, ou seja, qualquer pessoa pode modificar o mapa. O Google Maps por outro lado, é um serviço de cartografia e bem estabelecido no mercado, oferecido pelo Google, e que não é colaborativo, o que lhe atribui maior confiabilidade (ALLIANCE FOR YOUTH MOVEMENTS, 2011, tradução autor).
+Para a aplicação aqui proposta, o Google Maps foi escolhido como o serviço responsável pela exibição do mapa de navegação para o usuário por oferecer maior confiabilidade, possuir uma biblioteca que funciona nativamente para web de modo fluente, dispor de uma documentação ampla e ser utilizado por muitos desenvolvedores em todo o mundo.
+5.2 Base de dados
+Os pontos de interesse são obtidos da API pública accessibility.cloud[16] que é um projeto de código aberto que se propõe a disponibilizar dados de acessibilidade de locais públicos por meio de requisições HTTP.
+Essa base de dados foi escolhida principalmente pelo formato escolhido para o armazenamento e exposição dos dados que segue um padrão chamado A11yJSON[17], esse padrão define quatro objetos de dados muito importantes para o desenvolvimento deste trabalho, são eles PersonalProfile[18], PlaceInfo[19], PointGeometry[20], PlaceProperties[21], e Accessibility[22].
+O esquema PersonalProfile descreve atributos de limitações físicas  de uma pessoa, são eles, blindness, guideDog, hearingImpairment, learningImpairment, mobilityImpairment, muteness, visualImpairment e wheelchair. O esquema PlaceInfo contém dois objetos de um local físico, o objeto PointGeometry e o objeto PlaceProperties. O objeto  PointGeometry descreve atributos de uma estrutura geográfica, contendo coordenadas de latitude e longitude que são extraídos para serem utilizados na execução da busca geolocalizada já o objeto PlaceProperties descreve as propriedades de um local, destes são extraídos name, address, category, accessibility, description, placeWebSiteURL, phone para exibir nos locais plotados no mapa. Por fim, o esquema Accessibility descreve atributos de acessibilidade física (e às vezes humana) os quais utilizamos accessibleWith, parking, restrooms.
+A Figura 10 apresenta o objeto criado para ser mostrado no mapa do aplicativo Brasil Acessível que é resultado da extração dos dados fornecidos pelo esquema A11yJSON.
+Figura 10 – Dados do objeto Local.
+  
+
+Fonte: Elaborado pelo autor
+O uso do padrão A11yJSON permitiu fazer buscas geolocalizadas e fazer filtros nos resultados com base nas especificações de acessibilidade.
+5.3 Design e funcionalidades
+Ao entrar no aplicativo Brasil Acessível, o usuário visualiza a página principal do site[23], que com base em sua localização já apresenta o mapa com os resultados encontrados, como mostra a Figura 11.
+Figura 11 – Tela principal do aplicativo Brasil Acessível  
+Fonte: Elaborado pelo autor
+Também é possível efetuar uma busca por uma localização diferente da que o usuário se encontra preenchendo um endereço no campo de busca localizado no menu superior a direita. Após preencher o campo e efetuar a busca o aplicativo retorna todos os locais com acessibilidade nesta nova região. A Figura 12 mostra a página principal com o formulário de busca sendo preenchido.
+Figura 12 – Tela principal do aplicativo Brasil Acessível com formulário de busca sendo preenchido.  
+Fonte: Elaborado pelo autor
+Os resultados são apresentados como pontos no mapa, clicando nos pontos será mostrado uma descrição do local e o nível de acessibilidade representado por ícones de estrelas, o nível de acessibilidade pode ir de 1 até 5. E é calculado pelo módulo de classificação de níveis de acessibilidade dos locais.
+Na Figura 13 é possível ver o resultado de uma busca com os locais encontrados.
+Figura 13 – Tela de resultado da busca do aplicativo Brasil Acessível.  
+Fonte: Elaborado pelo autor
+
+
+Os resultados apresentados podem ser filtrados atualmente pelas categorias restaurantes e hotéis e pelos filtros de nível de acessibilidade e tipo de deficiência.
+Os níveis de acessibilidade aplicam um filtro nos resultados obtidos mostrando apenas o que contém lugares com nível de acessibilidade igual ou superior ao nível selecionado que podem ser de 1 à 5.
+Por fim, o filtro de tipo de deficiência ajusta a consulta aumentando ou reduzindo o nível de acessibilidade requerida dos resultados obtidos de acordo com a limitação física escolhida que pode ser uma das seguintes opções:
+* Paralisia parcial ou total de membros superiores;
+* Paralisia parcial ou total de membros inferiores;
+* Paralisia parcial ou total de todos os membros;
+* Falta dos membros superiores;
+* Falta dos membros inferiores;
+* Falta de todos os membros.
+        Também existe a opção de marcar o assistente de acessibilidade que simplifica o filtro para o usuário aplicando uma heurística que filtra os resultados trazendo apenas os locais em uma distância de no máximo 2500 metros e com maior nível de acessibilidade. Na Figura 14 é possível ver o formulário de filtros.
+Figura 14 – Formulário de filtros e assistente.
+  
+
+Fonte: Elaborado pelo autor
+Cada local exposto no mapa pode ser selecionado para que sejam mostrados detalhes do mesmo e o formulário com características de acessibilidade do local, como mostra a Figura 15.
+Figura 15 – Formulário de características de acessibilidade do local.  
+Fonte: Elaborado pelo autor
+Caso o usuário selecione algum novo atributo de acessibilidade para o local e clique no botão reportar, uma rotina é disparada para gerar um objeto no formato A11yJSON adicionando os dados já existentes desse local, aos dados reportados pelo usuário. Uma vez gerado o objeto, este é enviado ao repositório accessibility.cloud.
+6 AVALIAÇÃO
+A avaliação por meio de cenários é uma abordagem amplamente utilizada pela comunidade científica (M. Satyanarayanan, 2001). Neste sentido, dois cenários foram criados em conjunto com uma pessoa cadeirante, para retratar situações cotidianas de pessoas que precisam encontrar locais próximos com acessibilidade e avaliar o site Brasil Acessível.
+O Cenário 1 retrata Luiz, um advogado tetraplégico que trabalha no centro de Porto Alegre e gostaria de encontrar restaurantes para almoçar que tenham acessibilidade. O cenário 2 ilustra Letícia, que é mãe de uma menina paraplégica e ao viajar precisa encontrar hotéis com acessibilidade para a filha. Os nomes usados (Luiz e Letícia) são fictícios.
+Abaixo, podemos ver o relato do Cenário 1 (Luiz):
+“Luiz é advogado, tetraplégico, que só consegue se locomover com o auxílio de uma cadeira de rodas elétrica. Um dia no trabalho, que fica no centro de Porto Alegre, foi convidado pelos colegas para sair para almoçar, com medo de se deparar com um restaurante sem acesso, decidiu fazer uso do aplicativo Brasil Acessível para buscar um restaurante com acessibilidade de acordo com seu perfil de deficiência, obteve 6 resultados na busca, e escolheu o mais próximo do seu trabalho."
+A Figura 16 mostra os resultados obtidos no cenário de Luiz.
+Figura 16 – Resultados obtidos no cenário de Luiz.  
+Fonte: Elaborado pelo autor
+Relato do Cenário 2 (Letícia):
+“Letícia tem um filha paraplégica, ela mora Em Porto Alegre e vai tirar férias em São Paulo com sua filha, por serem poucos dias e serem apenas as duas, ela pretende ficar em algum hotel com acessibilidade bem próximo ao centro da cidade, para não precisar entrar em contato com os hotéis da região fez uma consulta no aplicativo Brasil Acessível informando o endereço desejado, assim o site mostrou todos os hotéis da região com algum nível de acessibilidade, uma vez que existiam bastante opções ela fez uso do assistente de acessibilidade que filtrou e reduziu os resultados a duas opções que lhe atenderam melhor"
+A Figura 17 mostra os resultados obtidos no cenário de Letícia.
+Figura 17 – Resultados obtidos no cenário de Letícia.
+  
+
+Fonte: Elaborado pelo autor
+Também foi solicitado a 15 pessoas, das quais 3 eram cadeirantes e as demais tinham convívio com uma pessoa cadeirante, que fizessem uso do aplicativo Brazil acessível.
+Com o intuito de avaliar a satisfação do usuário segundo a norma NBR 9241/11 (2002) que define usabilidade como uma medida na qual um produto pode ser usado por usuários específicos para alcançar objetivos específicos com eficácia, eficiência e satisfação em um contexto específico de uso. Foi perguntado qual o nível de satisfação ao buscar por um ambiente acessível no aplicativo Brasil Acessível?
+O resultado das respostas pode ser visto na Figura 18.
+Figura 18 – Gráfico de resultado da questão 1 da pesquisa.  
+Fonte: Elaborado pelo autor
+Esse resultado sugere que a maioria dos entrevistados teve resultado satisfatório na ação de fazer a busca por um local com acessibilidade, sendo em maioria as respostas com nível de satisfação entre 4 e 5.
+Também foi questionado qual o nível de satisfação com a forma que os resultados foram apresentados?
+E as respostas são apresentadas de acordo com a Figura 19.
+Figura 19 – Gráfico de resultado da questão 2 da pesquisa.  
+Fonte: Elaborado pelo autor
+Assim como na questão anterior, a maioria das respostas ficaram entre níveis de satisfação 4 e 5. Analisando os resultados pode-se notar que o aplicativo Brasil Acessível é uma boa ferramenta para se fazer buscas por locais com acessibilidade.
+7 DISCUSSÃO
+Com base no desenvolvimento e nos resultados apresentados, esta seção contempla a discussão acerca dos achados realizados.
+Este trabalho apresentou o protótipo de uma aplicação, baseada em mapas e em geolocalização, para a visualização de informações georreferenciadas on-line, a ser utilizada como uma ferramenta de auxílio a pessoas com deficiência quando as mesmas precisem encontrar locais com acessibilidade.
+7.1 Limitações
+Ainda que o objetivo central deste trabalho seja um projeto que tem como enfoque melhorar a vida de todas as pessoas com deficiência, questões de acessibilidade do aplicativo para leitores de tela não atendem todas Diretrizes de Acessibilidade de Conteúdo da Web (WCAG) 2.0, W3C, podendo ser tratadas em um trabalho de melhoria futura.
+Outra questão que também não foi possível concluir foi a ação de salvar os dados coletados pelo protótipo desenvolvido diretamente na base de dados accessibility.cloud, uma vez que a mesma apenas está aberta para consumo e não permite inserção de dados. Foi feita uma solicitação para que fosse permitida a inserção de dados, e toda a implementação necessária para essa integração foi feita, de modo que os dados já são salvos localmente em memória no formato A11yJSON e uma vez obtida a aprovação é possível terminar a integração dessa funcionalidade.
+7.2 Comparação com outras aplicações
+Ao comparar a aplicação com ferramentas similares da mesma área, é possível apresentar as vantagens que se tem de estar no ambiente web que pode ser acessado por qualquer dispositivo com acesso a internet e um navegador, sem necessidade de instalação, diferente dos casos apresentados no trabalho Moova (2018) apresentado na seção 2, que pode rodar apenas na plataforma Android. 
+O uso de busca referenciada em latitude, longitude e mapas permite encontrar o usuário e já lhe trazer os locais mais próximos o que é uma vantagem em relação aos projetos Free Access e Moova (2018) que não são sensíveis ao contexto, e não mostram os dados baseados na localização do usuário, sendo necessário que o usuário faça a busca pelo local correto antes de iniciar qualquer análise da situação.
+Fazer uso da base de dados do accessibility.cloud permitiu uma carga de dados robusta e suficiente para iniciar o protótipo com dados de locais públicos com acessibilidade, foi possível trazer mais resultados nas buscas em relação a proposta do projeto Caminho Livre que optou por uma carga de dados restrita a locais dentro da Universidade Federal da Paraíba e feita pelos próprios usuários da aplicação.
+Por fim, um dos pontos que mais diferiu positivamente este projeto dos demais pesquisados foram os filtros e assistente de acessibilidade que  auxiliam os usuários a definir o resultado de suas buscas à locais que garantam a acessibilidade necessária ao seu tipo de limitação física.
+8 CONCLUSÃO
+Neste trabalho apresentou-se um sistema web capaz de fazer buscas de locais com acessibilidade baseado em posição geográfica e filtrar os resultados com base no nível de acessibilidade dos locais.
+A pesquisa para o desenvolvimento do aplicativo evidenciou a necessidade de um esquema de dados que permitisse a consulta geolocalizada e também fornecesse os atributos de acessibilidade que permitissem classificar e filtrar os locais por nível de acessibilidade, essas necessidades foram plenamente atingida fazendo uso do formato A11yJSON.
+Outro avanço da pesquisa se deu pelo uso da base de dados accessibility.cloud que forneceu dados no formato necessário seguindo o padrão A11yJSON para a construção do protótipo. 
+Com base no desenvolvimento e nos resultados apresentados e discutidos, conclui-se que a aplicação desenvolvida se mostra viável para ajudar os deficientes a identificar locais com acessibilidade e como trabalho futuro, este modelo desenvolvido pode também servir, com algumas adaptações, para que outras organizações ou empresas construam bases de dados de locais com acessibilidade. E como trabalho futuro final é possível aprimorar a classificação dos níveis de acessibilidade e assistente de acessibilidade com algoritmos de aprendizagem de máquina.
+
+
+REFERÊNCIAS
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. NBR 9241/11: Requisitos Ergonômicos para Trabalhos em Escritórios com Computadores: Orientações sobre Usabilidade. Rio de Janeiro. 2002.
+BOLTEN, N., AMINI, A., HAO, Y. Urban Sidewalks: vizualization and routing for individuals with limited mobility. The First International Workshop on Smart Cities and Urban Analytics (UrbanGIS). 2015. 
+Davis, F. 1989. Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology. MIS Quaterly, v.13, 3 (Sept. 1989), 319-340.
+DONAHOO, M. J.; CALVERT, K. L. TCP/IP Sockets in C: Practical Guide for Programmers. 2nd. ed. [S.l.]: Morgan Kaufmann, 2009.
+FARNAGHI, M.; MANSOURIAN, A.; TOOMANIAN, A. Integration of rendering technologies and visualization techniques to improve 3d mobile gisapplications. In: ISPRS Workshop on quality, scale and analysis aspects of city models. Lund, Sweden: [s.n.], 2009.
+FERRARO, RICHARD; AKTIHANONOG, MURAT. Location Based Services Past, Present, and Future. Green paper from Location Based Services Navigating through the Mobile Jungle, janeiro, 2010.
+GIL, Antonio Carlos. Como elaborar projetos de pesquisa. 3. ed. São Paulo: Atlas, 1991.
+ALLIANCE FOR YOUTH MOVEMENTS. Google Maps or OpenStreetMap: Which  Mapping Tool is Best for Your Project? 2011. Acesso em: 16 de julho de 2013. Disponível em: <http://www.movements.org/blog/entry/google-maps-or-openstreetmap/>.
+HOLONE, H., MISUND, G. People Helping Computers Helping People: Navigation for People with Mobility Problems by Sharing Accessibility Annotations, in: Miesenberger, K., Klaus, J., Zagler, W., Cashmere, A. (Eds.), Computers Helping People with Especial Medes. Springer Berlin Heidelberg, Berlin, Heidelberg, pp. 1093–1100. 2008.
+IIDA, Itiro. Ergonomia: Projeto e Produção. 2. edição ver. e ampl. – São Paulo: Editora Edgard Blücher, 2005.
+KOZIEVITCH, N.P., ALMEIDA, L.D.A., DUTRA DA SILVA, R., MINETTO, R. An Alternative and Smarter Route Planner for Wheelchair Users - Exploring Open Data, in: 5th Intl. Conf. on Smart Cities and Green ICT Systems, 94- 99, 2016, Rome, Italy.2016.
+KULAKOV, K.A., SHABAEV, A.I., SHABALINA, I.M. The route planning services approach for people with disability. Presented at the Open Innovations Association (FRUCT), 2015 17th Conference of, IEEE, pp. 89–95.2015.
+KUPPER, AXEL. Locaion-based Services: Fundamentals and Operation. John Wiley & Sons Ltd, 2005.
+MIRANDA, J. I. Fundamentos de Sistemas de informações Geográficas / José Igualtemar Miranda. 2. ed. rev. atual. - Brasília, DF. Embrapa Informação Tecnológica, 2010. 425 p.
+MIRRI, S., PRANDI, C., SALOMONI, P. A context-aware system for personalized and accessible pedestrian paths. Presented at the High Performance Computing & Simulation (HPCS), International Conference on, IEEE, pp. 833–840. 2014.
+M. Satyanarayanan.: ”Pervasive computing: vision and challenges.”; IEEE Personal Communications, 8(4):10–17, Aug 2001.
+RESENDE, Denis Alcides, Engenharia de Software e Sistemas de Informação, 3ª Edição Revista e Ampliada, Rio de Janeiro, Brasport, 2005.
+
+
+________________
+[1]* Graduando em Sistemas de Informação pela Unisinos. Email: geisonfgf@gmail.com
+[2]** Doutor em Computação Aplicada pela Unisinos. Email: joaoer@unisinos.br
+[3] https://www.accessibility.cloud
+[4] https://a11yjson.org
+[5] https://www.rfc-editor.org/rfc/rfc7946
+[6] https://geojson.org/
+[7] https://www.gsma.com
+[8] https://sozialhelden.github.io/a11yjson/
+[9] https://scielo.org/
+[10] https://scholar.google.com.br/?hl=pt
+[11] https://catalogodeteses.capes.gov.br/catalogo-teses/#!/
+[12] https://github.com/geisonfgf/brasil-acessivel-tcc
+[13] https://code.visualstudio.com
+[14] https://www.google.com.br
+[15] https://www.openstreetmap.org
+[16] https://accessibility.cloud/
+[17] https://sozialhelden.github.io/a11yjson/
+[18] https://sozialhelden.github.io/a11yjson/3-interfaces/#personalprofile
+
+
+[19] https://sozialhelden.github.io/a11yjson/3-interfaces/#placeinfo
+
+
+[20] https://sozialhelden.github.io/a11yjson/3-interfaces/#pointgeometry
+[21] https://sozialhelden.github.io/a11yjson/3-interfaces/#placeproperties
+
+
+[22] https://sozialhelden.github.io/a11yjson/3-interfaces/#Accessibility
+[23] https://brasil-acessivel.netlify.app
